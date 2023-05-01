@@ -7,6 +7,7 @@ import { loginSuccess } from "../redux/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Alert from "../components/Alert";
+import { useCookies } from "react-cookie";
 
 const Container = styled.div`
   height: 100vh;
@@ -160,6 +161,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(0);
   const [alert, setAlert] = useState("");
+  const [cookies, setCookie] = useCookies(["access_token"]);
 
   const handleAlert = (err) => {
     setAlert(err);
@@ -177,7 +179,8 @@ const Signup = () => {
     try {
       const res = await axios.post("/auth/signin", { email, password });
 
-      dispatch(loginSuccess(res.data));
+      dispatch(loginSuccess(res.data.others));
+      setCookie("access_token", res.data.jwt,{ path: "/" });
 
       navigate("/home");
     } catch (err) {
@@ -193,7 +196,8 @@ const Signup = () => {
         email: email,
         password: password,
       });
-      dispatch(loginSuccess(res.data));
+      dispatch(loginSuccess(res.data.others));
+      setCookie("access_token", res.data.jwt,{ path: "/" });
       navigate("/home");
     } catch (err) {
       handleAlert("error");
@@ -213,7 +217,8 @@ const Signup = () => {
               img: result.user.photoURL,
             })
             .then((res) => {
-              dispatch(loginSuccess(res.data));
+              dispatch(loginSuccess(res.data.others));
+              setCookie("access_token", res.data.token,{ path: "/" });
               navigate("/home");
             });
         })

@@ -19,7 +19,7 @@ export const signin=async(req,res,next)=>{
 
         res.cookie("access_token", token, {
             httpOnly: true,
-        }).status(200).json(others);
+        }).status(200).json({others:others,jwt:token});
     }
     catch(err){
         next(err);
@@ -38,7 +38,7 @@ export const signup=async(req,res,next)=>{
 
         res.cookie("access_token",token,{
             httpOnly:true,
-        }).status(200).json(newUser);
+        }).status(200).json({others:newUser,jwt:token});
     }
     catch(err){
         next(err); 
@@ -66,7 +66,7 @@ export const google=async(req,res,next)=>{
 
             res.cookie("access_token", token, {
                 httpOnly: true
-            }).status(200).json(savedUser._doc);
+            }).status(200).json({others:savedUser._doc,jwt:token});
         }
     }
     catch(err){
