@@ -1,8 +1,8 @@
-<Project Name> is a web application inspired by Facebook for users to stream and share thoughts through image, video and text . <Project Name> allows users to upload their own posts and comment on any other post as well.
+Velle is a web application inspired by Facebook for users to stream and share thoughts through image, video and text . <Project Name> allows users to upload their own posts and comment on any other post as well.
 
-<Project Name> is a personal project by Dhruv  Sharma.
+Velle is a personal project by Dhruv  Sharma.
 
-<Project Link>
+https://main--elaborate-cajeta-d20f6b.netlify.app/
 
 Major Features:
 
