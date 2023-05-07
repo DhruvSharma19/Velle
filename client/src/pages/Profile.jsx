@@ -229,8 +229,8 @@ const Profile = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`/users/find/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
-      const res1 = await axios.get(`/post/myPost/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res1 = await axios.get(`https://velle-wtov.onrender.com/api/post/myPost/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
       setPosts(res1.data);
     } catch (err) {
@@ -240,7 +240,7 @@ const Profile = () => {
 
   const handleMessage = async () => {
     try {
-      await axios.post(`/chat/create/${currentUser._id}`, {
+      await axios.post(`https://velle-wtov.onrender.com/api/chat/create/${currentUser._id}`, {
         senderId: currentUser._id,
         recieverId: path,
       },{headers:{Authorization:"Bearer "+currentUser.jwt}});
@@ -253,7 +253,7 @@ const Profile = () => {
   const handleRequest = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/users/request/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/users/request/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
     } catch (err) {
       console.log("error");
     }

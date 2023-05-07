@@ -176,7 +176,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/auth/signin", { email, password });
+      const res = await axios.post("https://velle-wtov.onrender.com/api/auth/signin", { email, password });
       dispatch(loginSuccess({...res.data.others,jwt:res.data.jwt}));
       navigate("/home");
     } catch (err) {
@@ -187,7 +187,7 @@ const Signup = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`/auth/signup`, {
+      const res = await axios.post(`https://velle-wtov.onrender.com/api/auth/signup`, {
         name: input,
         email: email,
         password: password,
@@ -206,7 +206,7 @@ const Signup = () => {
       signInWithPopup(auth, provider)
         .then((result) => {
           axios
-            .post("/auth/google", {
+            .post("https://velle-wtov.onrender.com/api/auth/google", {
               name: result.user.displayName,
               email: result.user.email,
               img: result.user.photoURL,

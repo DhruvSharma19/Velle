@@ -88,7 +88,7 @@ const Comment = ({ post, c, setC }) => {
 
   const handleComment = async () => {
     try {
-      const res = await axios.post(`/comment/create`, {
+      const res = await axios.post(`https://velle-wtov.onrender.com/api/comment/create`, {
         postId: post._id,
         desc: value,
       },{headers:{Authorization:"Bearer "+currentUser.jwt}});
@@ -114,7 +114,7 @@ const Comment = ({ post, c, setC }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`/comment/getAll/${post._id}`);
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/comment/getAll/${post._id}`);
       setComments(res.data);
       setC(comments.length);
     } catch (err) {

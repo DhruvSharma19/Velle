@@ -259,7 +259,7 @@ const Chat = ({ currentconv, setCurrentconv }) => {
   }, [img]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://vellesocket.onrender.com/");
     socket.current?.on("getMessage", (data) => {
       
       setArrivalMessage({
@@ -284,9 +284,9 @@ const Chat = ({ currentconv, setCurrentconv }) => {
     const f = currentconv?.members?.find((id) => id !== currentUser._id);
 
     try {
-      const res = await axios.get(`/message/get/${currentconv._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/message/get/${currentconv._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       if (f) {
-        const res1 = await axios.get(`/users/find/${f}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+        const res1 = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${f}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
         setFriend(res1.data);
       }
       setMessages(res.data);
@@ -312,7 +312,7 @@ const Chat = ({ currentconv, setCurrentconv }) => {
     }
 
     try {
-      const res = await axios.post(`/message/create/${currentconv._id}`, {
+      const res = await axios.post(`https://velle-wtov.onrender.com/api/message/create/${currentconv._id}`, {
         chatId: currentconv._id,
         senderId: currentUser._id,
         desc: q,

@@ -97,7 +97,7 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
   const [onlineUsers,setOnlineUsers]=useState([]);
 
   useEffect(()=>{
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://vellesocket.onrender.com/");
     socket.current.emit("addUser", currentUser._id);
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);

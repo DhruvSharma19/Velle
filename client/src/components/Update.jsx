@@ -150,7 +150,7 @@ const Update = ({ setO }) => {
 
   const handlePost = async () => {
     try {
-      const res = await axios.put(`/users/${currentUser._id}`, { ...inputs },{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.put(`https://velle-wtov.onrender.com/api/users/${currentUser._id}`, { ...inputs },{headers:{Authorization:"Bearer "+currentUser.jwt}});
       if(img){
         dispatch(imgUrl(res.data.img));
       }

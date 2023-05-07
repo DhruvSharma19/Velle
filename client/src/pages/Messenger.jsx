@@ -43,7 +43,7 @@ const Messenger = () => {
 
   const fetchChats = async () => {
     try {
-      const res = await axios.get(`/chat/get/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/chat/get/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setConversations(res.data);
     } catch (err) {
       console.log(err);

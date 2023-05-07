@@ -71,7 +71,7 @@ const RightCard = ({ u }) => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`/users/reject/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/users/reject/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(reject(u));
     } catch (err) {
       handleAlert("error");
@@ -80,7 +80,7 @@ const RightCard = ({ u }) => {
 
   const handleAccept = async () => {
     try {
-      await axios.put(`/users/accept/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/users/accept/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(accept(u));
     } catch (err) {
       handleAlert("error");
@@ -89,7 +89,7 @@ const RightCard = ({ u }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`/users/find/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
     } catch (err) {
       handleAlert("error");

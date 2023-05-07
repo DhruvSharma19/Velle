@@ -61,7 +61,7 @@ const Online = ({friend,onlineUsers}) => {
 
     const fetchUser=async()=>{
         try{
-            const res=await axios.get(`/users/find/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+            const res=await axios.get(`https://velle-wtov.onrender.com/api/users/find/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
             setUser(res.data);
         }
         catch(err){

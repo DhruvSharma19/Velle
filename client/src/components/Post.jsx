@@ -207,7 +207,7 @@ const Post = ({ post }) => {
 
   const handlePost = async () => {
     try {
-      await axios.delete(`/post/${post._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.delete(`https://velle-wtov.onrender.com/api/post/${post._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(deletePost(post._id));
     } catch (err) {
       handleAlert("error");
@@ -216,7 +216,7 @@ const Post = ({ post }) => {
 
   const handleLike = async () => {
     try {
-      await axios.put(`/post/like/${post._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/post/like/${post._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(like({ postId: post._id, userId: currentUser._id }));
     } catch (err) {
       handleAlert("error");
@@ -225,7 +225,7 @@ const Post = ({ post }) => {
 
   const fetchUser = async () => {
     try{
-      const res = await axios.get(`/users/find/${post.userId}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${post.userId}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
     }catch(err){
       handleAlert("error");

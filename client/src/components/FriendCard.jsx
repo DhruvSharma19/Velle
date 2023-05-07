@@ -100,7 +100,7 @@ const FriendCard = ({friend}) => {
 
   const handleRemove=async()=>{
     try{
-      await axios.put(`/users/remove/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/users/remove/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(remove(friend));
       handleAlert("Friend Removed");  
     }
@@ -111,8 +111,8 @@ const FriendCard = ({friend}) => {
 
   const fetchUser=async()=>{
     try{
-      const res=await axios.get(`/users/find/${friend}`);
-      const res1=await axios.get(`/post/myPost/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res=await axios.get(`https://velle-wtov.onrender.com/api/users/find/${friend}`);
+      const res1=await axios.get(`https://velle-wtov.onrender.com/api/post/myPost/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setPosts(res1.data);
       setUser(res.data);
     }catch(err){
@@ -124,7 +124,7 @@ const FriendCard = ({friend}) => {
     e.preventDefault();
     try{
      
-        const res=await axios.post(`/chat/create/${currentUser._id}`,{senderId:currentUser._id,recieverId:friend},{headers:{Authorization:"Bearer "+currentUser.jwt}});
+        const res=await axios.post(`https://velle-wtov.onrender.com/api/chat/create/${currentUser._id}`,{senderId:currentUser._id,recieverId:friend},{headers:{Authorization:"Bearer "+currentUser.jwt}});
         navigate(`/messenger/${currentUser._id}`);
         
     }

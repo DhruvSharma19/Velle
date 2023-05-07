@@ -53,7 +53,7 @@ const Reply = ({c}) => {
 
   const fetchUser=async()=>{
     try{
-      const res=await axios.get(`/users/find/${c.userId}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res=await axios.get(`https://velle-wtov.onrender.com/api/users/find/${c.userId}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
 
     }

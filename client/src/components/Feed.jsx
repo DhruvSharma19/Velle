@@ -36,7 +36,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await axios.get(`/post/random`,);
+        const res = await axios.get(`https://velle-wtov.onrender.com/api/post/random`,);
         dispatch(postSuccess(res.data));
       } catch (err) {
         handleAlert("error");
