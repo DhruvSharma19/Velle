@@ -129,7 +129,7 @@ const Card = ({user}) => {
 
     const handleReject=async()=>{
         try{
-          await axios.put(`/users/reject/${user._id}`);
+          await axios.put(`/users/reject/${user._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
           dispatch(reject(user._id))
           handleAlert("Request Rejected")
         }
@@ -140,7 +140,7 @@ const Card = ({user}) => {
       }
     
       const handleRequest=async()=>{
-        await axios.put(`/users/request/${user._id}`);
+        await axios.put(`/users/request/${user._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
         handleAlert("Request has been sent.")
     
         try{
@@ -154,7 +154,7 @@ const Card = ({user}) => {
     
       const handleAccept=async()=>{
         try{
-            await axios.put(`/users/accept/${user._id}`);
+            await axios.put(`/users/accept/${user._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
             dispatch(accept(user._id));
             handleAlert("Request Accepted");
         }

@@ -10,7 +10,7 @@ router.put("/:id",verifyToken,updatePost);
 router.delete("/:id",verifyToken,deletePost);
 router.get("/random",getPosts);
 router.put("/like/:id",verifyToken,like);
-router.get("/myPost/:id",verifyToken,myPosts);
+router.get("/myPost/:id",myPosts);
 
 
 export default router 

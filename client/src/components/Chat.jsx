@@ -241,7 +241,6 @@ const Chat = ({ currentconv, setCurrentconv }) => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           if(urlType === "imgUrl"){
             setImgUrl(downloadURL);
-            console.log(imgUrl);
           }
           else{
             setVidUrl(downloadURL);
@@ -285,9 +284,9 @@ const Chat = ({ currentconv, setCurrentconv }) => {
     const f = currentconv?.members?.find((id) => id !== currentUser._id);
 
     try {
-      const res = await axios.get(`/message/get/${currentconv._id}`);
+      const res = await axios.get(`/message/get/${currentconv._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       if (f) {
-        const res1 = await axios.get(`/users/find/${f}`);
+        const res1 = await axios.get(`/users/find/${f}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
         setFriend(res1.data);
       }
       setMessages(res.data);
@@ -319,7 +318,7 @@ const Chat = ({ currentconv, setCurrentconv }) => {
         desc: q,
         imgUrl:imgUrl,
         videoUrl:vidUrl,
-      });
+      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setImgPerc(0);
       setQ("");
       setVideoPerc(0);

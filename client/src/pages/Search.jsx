@@ -69,7 +69,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`/users/search${query}`);
+      const res = await axios.get(`/users/search${query}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUsers(res.data);
     };
     fetchVideos();

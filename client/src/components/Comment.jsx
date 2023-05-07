@@ -71,6 +71,7 @@ const Input = styled.div`
 `;
 
 const Comment = ({ post, c, setC }) => {
+  const{currentUser}=useSelector((state)=>state.user);
   const [value, setValue] = useState("");
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(0);
@@ -90,7 +91,7 @@ const Comment = ({ post, c, setC }) => {
       const res = await axios.post(`/comment/create`, {
         postId: post._id,
         desc: value,
-      });
+      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setComments([...comments, res.data]);
       setC(c + 1);
       setValue("");

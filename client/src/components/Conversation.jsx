@@ -59,7 +59,7 @@ const Conversation = ({conv,onlineUsers}) => {
         const friends= conv.members.find((m)=>m!==currentUser._id)
 
         try{
-            const res=await axios.get(`/users/find/${friends}`);
+            const res=await axios.get(`/users/find/${friends},{headers:{Authorization:"Bearer "+currentUser.jwt}}`);
             setUser(res.data);
         }
         catch(err){

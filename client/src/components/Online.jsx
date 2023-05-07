@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 
@@ -55,12 +56,12 @@ const Sign=styled.span`
 
 
 const Online = ({friend,onlineUsers}) => {
-
+    const {currentUser}=useSelector((state)=>state.user);
     const [user,setUser]=useState({});
 
     const fetchUser=async()=>{
         try{
-            const res=await axios.get(`/users/find/${friend}`);
+            const res=await axios.get(`/users/find/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
             setUser(res.data);
         }
         catch(err){

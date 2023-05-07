@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { reject, accept } from "../redux/userSlice";
@@ -55,6 +55,7 @@ const Right = styled.div`
 `;
 
 const RightCard = ({ u }) => {
+  const {currentUser}=useSelector((state)=>state.user);
   const [user, setUser] = useState({});
   const [open, setOpen] = useState(0);
   const [alert, setAlert] = useState("");
@@ -70,7 +71,7 @@ const RightCard = ({ u }) => {
 
   const handleReject = async () => {
     try {
-      await axios.put(`/users/reject/${u}`);
+      await axios.put(`/users/reject/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(reject(u));
     } catch (err) {
       handleAlert("error");
@@ -79,7 +80,7 @@ const RightCard = ({ u }) => {
 
   const handleAccept = async () => {
     try {
-      await axios.put(`/users/accept/${u}`);
+      await axios.put(`/users/accept/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(accept(u));
     } catch (err) {
       handleAlert("error");
@@ -88,7 +89,7 @@ const RightCard = ({ u }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`/users/find/${u}`);
+      const res = await axios.get(`/users/find/${u}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
     } catch (err) {
       handleAlert("error");

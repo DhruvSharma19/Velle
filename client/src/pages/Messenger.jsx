@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import { useLocation } from "react-router";
 import axios from "axios";
 import io from "socket.io-client";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100vw;
@@ -32,6 +33,7 @@ font-size: 40px;
 `;
 
 const Messenger = () => {
+  const {currentUser}=useSelector((state)=>state.user);
   const path = useLocation().pathname.split("/")[2];
   const [conversations, setConversations] = useState([]);
   const [currentconv, setCurrentconv] = useState(null);
@@ -41,7 +43,7 @@ const Messenger = () => {
 
   const fetchChats = async () => {
     try {
-      const res = await axios.get(`/chat/get/${path}`);
+      const res = await axios.get(`/chat/get/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setConversations(res.data);
     } catch (err) {
       console.log(err);

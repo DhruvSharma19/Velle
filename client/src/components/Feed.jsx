@@ -20,6 +20,7 @@ const Container = styled.div`
 
 const Feed = () => {
   const currentpost = useSelector((state) => state.post.currentPost);
+  const {currentUser} = useSelector((state)=>state.user);
   const [open, setOpen] = useState(0);
   const [alert, setAlert] = useState("");
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await axios.get(`/post/random`);
+        const res = await axios.get(`/post/random`,);
         dispatch(postSuccess(res.data));
       } catch (err) {
         handleAlert("error");

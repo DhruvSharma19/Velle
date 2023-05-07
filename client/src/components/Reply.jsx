@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {Link} from "react-router-dom"
+import { useSelector } from 'react-redux';
 
 const Container=styled.div`
     padding: 8px;
@@ -47,12 +48,12 @@ const Container=styled.div`
 `;
 
 const Reply = ({c}) => {
-
+  const {currentUser}=useSelector((state)=>state.user);
   const [user,setUser]=useState({});
 
   const fetchUser=async()=>{
     try{
-      const res=await axios.get(`/users/find/${c.userId}`);
+      const res=await axios.get(`/users/find/${c.userId}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
 
     }

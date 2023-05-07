@@ -229,8 +229,8 @@ const Profile = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`/users/find/${path}`);
-      const res1 = await axios.get(`/post/myPost/${path}`);
+      const res = await axios.get(`/users/find/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res1 = await axios.get(`/post/myPost/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
       setUser(res.data);
       setPosts(res1.data);
     } catch (err) {
@@ -243,7 +243,7 @@ const Profile = () => {
       await axios.post(`/chat/create/${currentUser._id}`, {
         senderId: currentUser._id,
         recieverId: path,
-      });
+      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
       navigate(`/messenger/${currentUser._id}`);
     } catch (err) {
       console.log(err);
@@ -253,7 +253,7 @@ const Profile = () => {
   const handleRequest = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/users/request/${path}`);
+      await axios.put(`/users/request/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
     } catch (err) {
       console.log("error");
     }

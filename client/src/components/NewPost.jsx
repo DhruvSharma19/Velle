@@ -192,7 +192,7 @@ const NewPost = () => {
 
   const handlePost = async () => {
     try {
-      const res = await axios.post("/post", { ...inputs });
+      const res = await axios.post("/post", { ...inputs },{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(addPost(res.data));
       setImgPerc(0);
       setVideoPerc(0);
