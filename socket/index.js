@@ -1,6 +1,6 @@
 const io = require("socket.io")(8900, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: "https://main--elaborate-cajeta-d20f6b.netlify.app/"
     }
 })
 

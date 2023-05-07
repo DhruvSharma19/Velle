@@ -8,10 +8,15 @@ import commentRoutes from "./routes/comment.js"
 import messageRoutes from "./routes/messages.js"
 import chatRoutes from "./routes/chat.js"
 import cookieParser from "cookie-parser"
+import cors from "cors"
 
 
 const app=express();
-
+app.use(
+    cors({
+        origin:"https://main--elaborate-cajeta-d20f6b.netlify.app/"
+    })
+)
 app.use(express.json());
 app.use(cookieParser())
 dotenv.config();
