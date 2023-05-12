@@ -4,6 +4,8 @@ Velle is a personal project by Dhruv  Sharma.
 
 https://main--elaborate-cajeta-d20f6b.netlify.app/
 
+Working Video : https://clipchamp.com/watch/Bl9lQnhD2OY
+  
 Major Features:
 
 1.	Signup and Signin Page:
