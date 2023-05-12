@@ -100,7 +100,7 @@ const FriendCard = ({friend}) => {
 
   const handleRemove=async()=>{
     try{
-      await axios.put(`https://velle-wtov.onrender.com/api/users/remove/${friend}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/users/remove/${friend}`,{},{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(remove(friend));
       handleAlert("Friend Removed");  
     }

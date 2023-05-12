@@ -216,7 +216,7 @@ const Post = ({ post }) => {
 
   const handleLike = async () => {
     try {
-      await axios.put(`https://velle-wtov.onrender.com/api/post/like/${post._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(`https://velle-wtov.onrender.com/api/post/like/${post._id}`,{},{headers:{Authorization:"Bearer "+currentUser.jwt}});
       dispatch(like({ postId: post._id, userId: currentUser._id }));
     } catch (err) {
       handleAlert("error");
