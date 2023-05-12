@@ -114,7 +114,7 @@ And smooth animations
 
 Technology
 
-<Project Name> is a single-page application built using :
+Velle is a single-page application built using :
 
 1.	React js
 2.	Mongo Db
