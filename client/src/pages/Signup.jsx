@@ -253,14 +253,14 @@ const Signup = () => {
           />
         )}
         <input
-          type="password"
+          type="text"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
           placeholder="Enter email or phone number"
         />
         <input
-          type="text"
+          type="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
