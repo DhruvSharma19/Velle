@@ -104,6 +104,7 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
     });
   },[])
   
+  
 
   return (
     <Container currentconv={currentconv}>
@@ -120,8 +121,9 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
           />
         </div>
       </Search>
+      
 
-      {conversations.map((conv) => {
+      {conversations.filter(con=>con.members[0].toLowerCase().includes(q) || con.members[1].toLowerCase().includes(q)).map((conv) => {
         return (
           <div onClick={()=>setCurrentconv(conv)}>
             
