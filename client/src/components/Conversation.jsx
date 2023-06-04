@@ -71,7 +71,7 @@ const Conversation = ({ conv, q, onlineUsers }) => {
   }, [conv]);
 
   return (
-    user?.name.toLowerCase().includes(q)?
+    user?.name?.toLowerCase().includes(q)?
     <>
       <Person>
         <Left>
