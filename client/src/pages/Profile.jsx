@@ -106,9 +106,8 @@ const Left = styled.div`
   box-sizing: border-box;
   flex-wrap: wrap;
 
-  @media (max-width:468px){
-   
-    width:100%;
+  @media (max-width: 468px) {
+    width: 100%;
     justify-content: space-around;
   }
 `;
@@ -151,11 +150,10 @@ const Right = styled.div`
     padding: 10px 18px;
   }
 
-  @media (max-width:468px){
-   
-   width:100%;
-   justify-content: space-around;
- }
+  @media (max-width: 468px) {
+    width: 100%;
+    justify-content: space-around;
+  }
 `;
 
 const Bottom = styled.div`
@@ -167,7 +165,7 @@ const Bottom = styled.div`
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
-  @media (max-width:468px) {
+  @media (max-width: 468px) {
     margin-top: 100px;
   }
 `;
@@ -229,8 +227,14 @@ const Profile = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
-      const res1 = await axios.get(`https://velle-wtov.onrender.com/api/post/myPost/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(
+        `https://velle-wtov.onrender.com/api/users/find/${path}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
+      const res1 = await axios.get(
+        `https://velle-wtov.onrender.com/api/post/myPost/${path}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       setUser(res.data);
       setPosts(res1.data);
     } catch (err) {
@@ -240,10 +244,14 @@ const Profile = () => {
 
   const handleMessage = async () => {
     try {
-      await axios.post(`https://velle-wtov.onrender.com/api/chat/create/${currentUser._id}`, {
-        senderId: currentUser._id,
-        recieverId: path,
-      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.post(
+        `https://velle-wtov.onrender.com/api/chat/create/${currentUser._id}`,
+        {
+          senderId: currentUser._id,
+          recieverId: path,
+        },
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       navigate(`/messenger/${currentUser._id}`);
     } catch (err) {
       console.log(err);
@@ -253,7 +261,10 @@ const Profile = () => {
   const handleRequest = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://velle-wtov.onrender.com/api/users/request/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      await axios.put(
+        `https://velle-wtov.onrender.com/api/users/request/${path}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
     } catch (err) {
       console.log("error");
     }
@@ -267,8 +278,7 @@ const Profile = () => {
     <>
       <Navbar />
       <Container>
-
-        {o === 1?<Update setO={setO}/> :""}
+        {o === 1 ? <Update setO={setO} /> : ""}
         {open === 1 ? <Alert desc={alert} /> : <></>}
         <LeftSide />
         <Main>
@@ -283,8 +293,8 @@ const Profile = () => {
             />
 
             {currentUser._id === path ? (
-              <BannerPen onClick={()=>setO(1)}>
-                <img src="/images/Pen.svg" alt="" />
+              <BannerPen onClick={() => setO(1)}>
+                <img src="/images/change.svg" alt="" />
               </BannerPen>
             ) : (
               ""
@@ -300,8 +310,8 @@ const Profile = () => {
               />
 
               {currentUser._id === path ? (
-                <Pen  onClick={()=>setO(1)}>
-                  <img src="/images/Pen.svg" alt="" />
+                <Pen onClick={() => setO(1)}>
+                  <img src="/images/change.svg" alt="" />
                 </Pen>
               ) : (
                 ""
@@ -329,13 +339,14 @@ const Profile = () => {
                 ) : (
                   <button onClick={handleMessage}>Message</button>
                 )}
-                
+
                 {currentUser.friends?.includes(path) ? (
                   <button>Following</button>
                 ) : user.requests?.includes(currentUser._id) ? (
                   <button>Pending</button>
+                ) : currentUser._id == path ? (
+                  <></>
                 ) : (
-                  currentUser._id==path ?<></>:
                   <button onClick={handleRequest}>Follow</button>
                 )}
               </Right>
