@@ -53,7 +53,7 @@ const Messenger = () => {
   useEffect(() => {
     fetchChats();
   }, [path, currentconv]);
-
+ 
   return (
     <>
       <Navbar />

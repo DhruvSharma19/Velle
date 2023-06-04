@@ -14,7 +14,7 @@ flex-direction: row;
 gap: 10px;
 align-items: center;
 justify-content: space-between;
-border-radius: 20px;
+border-radius: 5px;
 padding: 5px 10px;
 cursor: pointer;
 :hover{

@@ -240,7 +240,7 @@ const Signup = () => {
 
   return (
     <Container>
-      {open && <Alert desc={alert} />}
+      {open ? <Alert desc={alert} />:<></>}
       <img src="/images/Background.svg" alt="yes" />
       <Box>
         {sign === 0 ? (
@@ -253,7 +253,7 @@ const Signup = () => {
           />
         )}
         <input
-          type="text"
+          type="password"
           onChange={(e) => {
             setEmail(e.target.value);
           }}

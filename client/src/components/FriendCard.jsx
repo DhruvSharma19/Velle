@@ -19,6 +19,7 @@ const Container=styled.div`
   gap: 20px;
   align-items: center;
   animation: fadein 0.3s;
+  transition: all 0.3s;
   :hover{
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   }

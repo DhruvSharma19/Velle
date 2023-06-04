@@ -48,7 +48,7 @@ const Right = styled.div`
       : "blue"};
 `;
 
-const Conversation = ({ conv, onlineUsers }) => {
+const Conversation = ({ conv, q, onlineUsers }) => {
   const { currentUser } = useSelector((state) => state.user);
   const [user, setUser] = useState({});
 
@@ -57,7 +57,8 @@ const Conversation = ({ conv, onlineUsers }) => {
 
     try {
       const res = await axios.get(
-        `https://velle-wtov.onrender.com/api/users/find/${friends}`,{headers:{Authorization:"Bearer "+currentUser.jwt}}
+        `https://velle-wtov.onrender.com/api/users/find/${friends}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
       );
       setUser(res.data);
     } catch (err) {
@@ -70,25 +71,28 @@ const Conversation = ({ conv, onlineUsers }) => {
   }, [conv]);
 
   return (
-    <Person>
-      <Left>
-        <div>
-          <img src={user.img || "/images/Person.svg"} alt="" />
-        </div>
-        <div>
-          <span
-            style={{
-              color: "white",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}
-          >
-            {user.name}
-          </span>
-        </div>
-      </Left>
-      <Right onlineUsers={onlineUsers} user={user}></Right>
-    </Person>
+    user.names.toLowerCase().includes(q)?
+    <>
+      <Person>
+        <Left>
+          <div>
+            <img src={user.img || "/images/Person.svg"} alt="" />
+          </div>
+          <div>
+            <span
+              style={{
+                color: "white",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              {user.name}
+            </span>
+          </div>
+        </Left>
+        <Right onlineUsers={onlineUsers} user={user}></Right>
+      </Person>
+    </>:<></>
   );
 };
 

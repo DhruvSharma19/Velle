@@ -102,7 +102,7 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);
     });
-  },[])
+  },[]) 
   
   
 
@@ -123,11 +123,11 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
       </Search>
       
 
-      {conversations.filter(con=>con.members[0].toLowerCase().includes(q) || con.members[1].toLowerCase().includes(q)).map((conv) => {
+      {conversations.map((conv) => {
         return (
           <div onClick={()=>setCurrentconv(conv)}>
             
-              <Conversation key={conv._id} conv={conv} onlineUsers={onlineUsers} />
+              <Conversation key={conv._id} conv={conv} q={q} onlineUsers={onlineUsers} />
             
           </div>
         );
