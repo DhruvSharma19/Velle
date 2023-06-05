@@ -273,6 +273,11 @@ const Navbar = () => {
           />
           <input
             type="text"
+            onKeyPress={(e) => {
+              if (e.key == "Enter") {
+                navigate(`/search?q=${q}`);
+              }
+            }}
             placeholder="Start typing to search"
             onChange={(e) => setQ(e.target.value)}
           />
