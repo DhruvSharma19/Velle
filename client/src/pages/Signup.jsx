@@ -7,7 +7,6 @@ import { loginSuccess } from "../redux/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Alert from "../components/Alert";
-import { useCookies } from "react-cookie";
 
 const Container = styled.div`
   height: 100vh;
@@ -223,6 +222,8 @@ const Signup = () => {
       handleAlert("error");
     }
   };
+
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -238,6 +239,7 @@ const Signup = () => {
     });
   }, [name]);
 
+  
   return (
     <Container>
       {open ? <Alert desc={alert} />:<></>}
