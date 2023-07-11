@@ -12,16 +12,16 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
-import AsyncStorage from '@react-native-community/async-storage';
+import storage from "redux-persist/lib/storage";
+// import AsyncStorage from '@react-native-community/async-storage';
 
 const persistConfig = {
   key: "root",
   version: 1,
-  storage:AsyncStorage,
+  storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer });
+const rootReducer = combineReducers({ user: userReducer,post:postReducer,comment:combineReducers });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
