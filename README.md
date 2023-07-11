@@ -1,4 +1,4 @@
-Velle is a web application inspired by Facebook for users to stream and share thoughts through image, video and text . <Project Name> allows users to upload their own posts and comment on any other post as well.
+Velle is a web application inspired by Facebook for users to stream and share thoughts through image, video and text . It allows users to upload their own posts and comment on any other post as well.
 
 Velle is a personal project by Dhruv  Sharma.
 
