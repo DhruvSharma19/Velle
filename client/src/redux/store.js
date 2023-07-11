@@ -21,7 +21,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer,post:postReducer,comment:combineReducers });
+const rootReducer = combineReducers({ user: userReducer,post:postReducer,comment:commentReducer });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
