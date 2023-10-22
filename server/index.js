@@ -14,7 +14,7 @@ import cors from "cors"
 const app=express();
 app.use(
     cors({
-        origin:{"https://main--elaborate-cajeta-d20f6b.netlify.app","https://elaborate-cajeta-d20f6b.netlify.app"}
+        origin:["https://main--elaborate-cajeta-d20f6b.netlify.app","https://elaborate-cajeta-d20f6b.netlify.app"]
     })
 )
 app.use(express.json());
