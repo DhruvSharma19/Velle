@@ -1,5 +1,6 @@
 html{
   scroll-behavior: smooth;
+  zoom:"75%"
 }
 
 
@@ -12,6 +13,7 @@ body{
   font-family: Avenir-Roman, sans-serif;
   margin: 0px;
   padding: 0px;
+  zoom:"75%"
 }
 
 a{
