@@ -28,7 +28,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  button{
+  button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -50,44 +50,37 @@ const Wrapper = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 300px;
-  
 
-    div{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-    input {
-      display: none;
-    }
-    img{
-        cursor: pointer;
-    }
-    
-  }
-`;
-
-
-const Top=styled.div`
+  div {
     display: flex;
-    width: 100%;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    justify-content: space-between;
-
-    h4{
-        margin: 0px;
-        padding: 0px;
-        
+    input {
+      display: none;
     }
-    img{
-        cursor: pointer;
+    img {
+      cursor: pointer;
     }
-
-    
+  }
 `;
 
+const Top = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+
+  h4 {
+    margin: 0px;
+    padding: 0px;
+  }
+  img {
+    cursor: pointer;
+  }
+`;
 
 const Update = ({ setO }) => {
   const [img, setImg] = useState(undefined);
@@ -95,7 +88,7 @@ const Update = ({ setO }) => {
   const [inputs, setInputs] = useState({});
   const [imgPerc, setImgPerc] = useState(0);
   const [bannerPerc, setBannerPerc] = useState(0);
-  const {currentUser}=useSelector((state)=>state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const [open, setOpen] = useState(0);
   const [alert, setAlert] = useState("");
 
@@ -109,7 +102,6 @@ const Update = ({ setO }) => {
     }, 2000);
   };
 
-  
   const uploadFile = (file, urlType) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
@@ -150,11 +142,15 @@ const Update = ({ setO }) => {
 
   const handlePost = async () => {
     try {
-      const res = await axios.put(`https://velle-wtov.onrender.com/api/users/${currentUser._id}`, { ...inputs },{headers:{Authorization:"Bearer "+currentUser.jwt}});
-      if(img){
+      const res = await axios.put(
+        `https://velle-wtov.onrender.com/api/users/${currentUser._id}`,
+        { ...inputs },
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
+      if (img) {
         dispatch(imgUrl(res.data.img));
       }
-      if(banner){
+      if (banner) {
         dispatch(bannerUrl(res.data.banner));
       }
       setImgPerc(0);
@@ -175,11 +171,16 @@ const Update = ({ setO }) => {
 
   return (
     <Container>
-        {open === 1? <Alert/>:""}
+      {open === 1 ? <Alert /> : ""}
       <Wrapper>
         <Top>
-            <h4>Update</h4>
-            <img style={{width:"30px",height:"30px"}} src="/images/Close.svg" alt="" onClick={()=>setO(0)}/>
+          <h4>Update</h4>
+          <img
+            style={{ width: "30px", height: "30px" }}
+            src="/images/Close.svg"
+            alt=""
+            onClick={() => setO(0)}
+          />
         </Top>
         <div>
           <input
@@ -189,9 +190,12 @@ const Update = ({ setO }) => {
             onChange={(e) => setImg(e.target.files[0])}
           />
           <label htmlFor="image">
-            <h5>User Image:{imgPerc>0 ? imgPerc+"%":"" }</h5>
-            <img src="/images/UpdateImg.svg" alt="" style={{width:"60px",height:"60px"}}/>
-           
+            <h5>User Image:{imgPerc > 0 ? imgPerc + "%" : ""}</h5>
+            <img
+              src="/images/UpdateImg.svg"
+              alt=""
+              style={{ width: "60px", height: "60px" }}
+            />
           </label>
         </div>
         <div>
@@ -202,8 +206,12 @@ const Update = ({ setO }) => {
             onChange={(e) => setBanner(e.target.files[0])}
           />
           <label htmlFor="image1">
-            <h5>Banner Image:{bannerPerc>0 ? bannerPerc+"%":"" }</h5>
-          <img src="/images/UpdateImg.svg" alt="" style={{width:"60px",height:"60px"}}/>
+            <h5>Banner Image:{bannerPerc > 0 ? bannerPerc + "%" : ""}</h5>
+            <img
+              src="/images/UpdateImg.svg"
+              alt=""
+              style={{ width: "60px", height: "60px" }}
+            />
           </label>
         </div>
         <button onClick={handlePost}>Update</button>

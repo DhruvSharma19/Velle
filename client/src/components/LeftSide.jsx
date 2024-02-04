@@ -140,7 +140,10 @@ const LeftSide = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`https://velle-wtov.onrender.com/api/post/myPost/${currentUser._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(
+        `https://velle-wtov.onrender.com/api/post/myPost/${currentUser._id}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       setPost(res.data);
     } catch (err) {
       handleAlert("error");

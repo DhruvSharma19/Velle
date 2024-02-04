@@ -71,7 +71,7 @@ const Input = styled.div`
 `;
 
 const Comment = ({ post, c, setC }) => {
-  const{currentUser}=useSelector((state)=>state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const [value, setValue] = useState("");
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(0);
@@ -85,13 +85,16 @@ const Comment = ({ post, c, setC }) => {
     }, 2000);
   };
 
-
   const handleComment = async () => {
     try {
-      const res = await axios.post(`https://velle-wtov.onrender.com/api/comment/create`, {
-        postId: post._id,
-        desc: value,
-      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.post(
+        `https://velle-wtov.onrender.com/api/comment/create`,
+        {
+          postId: post._id,
+          desc: value,
+        },
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       setComments([...comments, res.data]);
       setC(c + 1);
       setValue("");
@@ -114,7 +117,9 @@ const Comment = ({ post, c, setC }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`https://velle-wtov.onrender.com/api/comment/getAll/${post._id}`);
+      const res = await axios.get(
+        `https://velle-wtov.onrender.com/api/comment/getAll/${post._id}`
+      );
       setComments(res.data);
       setC(comments.length);
     } catch (err) {

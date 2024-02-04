@@ -17,33 +17,33 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const Nothing=styled.div`
-flex: 3;
-background-color: white;
-color: gray;
-font-weight: bold;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 40px;
+const Nothing = styled.div`
+  flex: 3;
+  background-color: white;
+  color: gray;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
 
-@media (max-width:900px){
-  display: none;
-}
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const Messenger = () => {
-  const {currentUser}=useSelector((state)=>state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const path = useLocation().pathname.split("/")[2];
   const [conversations, setConversations] = useState([]);
   const [currentconv, setCurrentconv] = useState(null);
-  
-
-  
 
   const fetchChats = async () => {
     try {
-      const res = await axios.get(`https://velle-wtov.onrender.com/api/chat/get/${path}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(
+        `https://velle-wtov.onrender.com/api/chat/get/${path}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       setConversations(res.data);
     } catch (err) {
       console.log(err);
@@ -53,26 +53,22 @@ const Messenger = () => {
   useEffect(() => {
     fetchChats();
   }, [path, currentconv]);
- 
+
   return (
     <>
       <Navbar />
       <Container>
-        
-
         <LatestChat
-        conversations={conversations}
-        setCurrentconv={setCurrentconv}
-        currentconv={currentconv}
+          conversations={conversations}
+          setCurrentconv={setCurrentconv}
+          currentconv={currentconv}
         />
-      
-       
-        { currentconv ?
-          <Chat currentconv={currentconv} setCurrentconv={setCurrentconv}/>:
+
+        {currentconv ? (
+          <Chat currentconv={currentconv} setCurrentconv={setCurrentconv} />
+        ) : (
           <Nothing>Nothing To Show</Nothing>
-        }
-        
-       
+        )}
       </Container>
     </>
   );

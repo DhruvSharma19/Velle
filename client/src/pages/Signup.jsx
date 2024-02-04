@@ -169,14 +169,15 @@ const Signup = () => {
     }, 2000);
   };
 
-  
-
   const handleSignin = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://velle-wtov.onrender.com/api/auth/signin", { email, password });
-      dispatch(loginSuccess({...res.data.others,jwt:res.data.jwt}));
+      const res = await axios.post(
+        "https://velle-wtov.onrender.com/api/auth/signin",
+        { email, password }
+      );
+      dispatch(loginSuccess({ ...res.data.others, jwt: res.data.jwt }));
       navigate("/home");
     } catch (err) {
       handleAlert("error");
@@ -186,12 +187,15 @@ const Signup = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`https://velle-wtov.onrender.com/api/auth/signup`, {
-        name: input,
-        email: email,
-        password: password,
-      });
-      dispatch(loginSuccess({...res.data.others,jwt:res.data.jwt}));
+      const res = await axios.post(
+        `https://velle-wtov.onrender.com/api/auth/signup`,
+        {
+          name: input,
+          email: email,
+          password: password,
+        }
+      );
+      dispatch(loginSuccess({ ...res.data.others, jwt: res.data.jwt }));
       navigate("/home");
     } catch (err) {
       handleAlert("error");
@@ -211,7 +215,7 @@ const Signup = () => {
               img: result.user.photoURL,
             })
             .then((res) => {
-              dispatch(loginSuccess({...res.data.others,jwt:res.data.jwt}));
+              dispatch(loginSuccess({ ...res.data.others, jwt: res.data.jwt }));
               navigate("/home");
             });
         })
@@ -222,7 +226,6 @@ const Signup = () => {
       handleAlert("error");
     }
   };
-
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -239,10 +242,9 @@ const Signup = () => {
     });
   }, [name]);
 
-  
   return (
     <Container>
-      {open ? <Alert desc={alert} />:<></>}
+      {open ? <Alert desc={alert} /> : <></>}
       <img src="/images/Background.svg" alt="yes" />
       <Box>
         {sign === 0 ? (

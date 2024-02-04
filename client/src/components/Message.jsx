@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import {format} from "timeago.js"
+import { format } from "timeago.js";
 
 const Container = styled.div`
   width: 100%;
@@ -20,11 +20,11 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   padding: 10px;
   text-align: left;
-  
+
   border-radius: 0px 10px 10px 10px;
   animation: fadein 0.3s;
 
-  div{
+  div {
     text-align: left;
     font-size: 13px;
     font-weight: bold;
@@ -39,11 +39,8 @@ const Wrapper = styled.div`
     font-weight: bold;
     color: black;
     border-radius: 0px 10px 10px 10px;
-    
   }
-
 `;
-
 
 const Wrapper2 = styled.div`
   width: 100%;
@@ -56,12 +53,12 @@ const Wrapper2 = styled.div`
   padding: 20px;
   /* overflow-y: hidden; */
 
-  div{
+  div {
     text-align: right;
     font-size: 13px;
     font-weight: bold;
   }
-  
+
   border-radius: 10px 0px 10px 10px;
   animation: fadein 0.3s;
 
@@ -74,8 +71,6 @@ const Wrapper2 = styled.div`
     font-weight: bold;
     color: black;
     border-radius: 10px 0px 10px 10px;
-
-    
   }
 `;
 
@@ -92,21 +87,19 @@ const Image = styled.div`
 `;
 
 const Video = styled.div`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   max-width: 50%;
   border-radius: 20px;
-  
-  video{
+
+  video {
     width: 100%;
     height: 100%;
     border-radius: 20px;
     overflow: hidden;
   }
 `;
-
-
 
 const Message = ({ message, friend }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -115,7 +108,6 @@ const Message = ({ message, friend }) => {
     <Container>
       {message.senderId !== currentUser._id ? (
         <Wrapper>
-          
           {message.imgUrl ? (
             <Image>
               <img src={message.imgUrl} alt="" />
@@ -131,15 +123,11 @@ const Message = ({ message, friend }) => {
             ""
           )}
 
-          {
-            message.desc ?
-            <span>{message.desc}</span>:""
-          }
+          {message.desc ? <span>{message.desc}</span> : ""}
           <div>{format(message.createdAt)}</div>
         </Wrapper>
       ) : (
         <Wrapper2>
-          
           {message.imgUrl ? (
             <Image>
               <img src={message.imgUrl} alt="" />
@@ -154,11 +142,8 @@ const Message = ({ message, friend }) => {
           ) : (
             ""
           )}
-         {
-          message.desc ?
-           <span>{message.desc}</span>:""
-         }
-         <div>{format(message.createdAt)}</div>
+          {message.desc ? <span>{message.desc}</span> : ""}
+          <div>{format(message.createdAt)}</div>
         </Wrapper2>
       )}
     </Container>

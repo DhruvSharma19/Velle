@@ -70,8 +70,7 @@ const Conversation = ({ conv, q, onlineUsers }) => {
     fetchUser();
   }, [conv]);
 
-  return (
-    user?.name?.toLowerCase().includes(q)?
+  return user?.name?.toLowerCase().includes(q) ? (
     <>
       <Person>
         <Left>
@@ -92,7 +91,9 @@ const Conversation = ({ conv, q, onlineUsers }) => {
         </Left>
         <Right onlineUsers={onlineUsers} user={user}></Right>
       </Person>
-    </>:<></>
+    </>
+  ) : (
+    <></>
   );
 };
 

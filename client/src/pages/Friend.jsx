@@ -23,7 +23,7 @@ const Main = styled.div`
   background-color: whitesmoke;
   flex: 4.5;
   margin-top: 70px;
-  min-width:60vw;
+  min-width: 60vw;
   box-sizing: border-box;
   padding: 20px;
   overflow-y: scroll;
@@ -34,17 +34,14 @@ const Main = styled.div`
   grid-template-rows: repeat(3, 1fr);
   gap: 30px;
   padding-bottom: 60px;
-  
 
-
-  @media (max-width:600px){
+  @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
-  
 `;
 
-const Nothing=styled.div`
+const Nothing = styled.div`
   width: 100%;
   font-size: 35px;
   color: black;
@@ -54,18 +51,21 @@ const Nothing=styled.div`
 
 const Friend = () => {
   const { currentUser } = useSelector((state) => state.user);
-  
+
   return (
     <>
       <Navbar />
       <Container>
         <LeftSide />
         <Main>
-          {currentUser.friends.length===0?<Nothing>Nothing To Show</Nothing>:""}
+          {currentUser.friends.length === 0 ? (
+            <Nothing>Nothing To Show</Nothing>
+          ) : (
+            ""
+          )}
           {currentUser.friends?.map((friend) => {
-            return (<FriendCard key={friend} friend={friend} />);
+            return <FriendCard key={friend} friend={friend} />;
           })}
-          
         </Main>
       </Container>
     </>

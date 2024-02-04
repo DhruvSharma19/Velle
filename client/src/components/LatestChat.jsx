@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import styled from "styled-components";
 import Conversation from "./Conversation";
-import axios from "axios"
+import axios from "axios";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
-
 
 const Container = styled.div`
   flex: 1.5;
@@ -18,10 +17,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  animation:fadein 0.5s;;
+  animation: fadein 0.5s;
   border-radius: 0px 10px 0px 0px;
 
-  &>div{
+  & > div {
     width: 100%;
   }
 
@@ -29,10 +28,10 @@ const Container = styled.div`
     width: 5px;
   }
 
-  @media (max-width:900px){
+  @media (max-width: 900px) {
     min-width: 100vw;
     padding-bottom: 60px;
-    display: ${(props)=>props.currentconv ? "none" : "flex"};
+    display: ${(props) => (props.currentconv ? "none" : "flex")};
   }
 `;
 
@@ -89,22 +88,19 @@ const Search = styled.div`
   }
 `;
 
-
-const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
-  const {currentUser}=useSelector((state)=>state.user);
+const LatestChat = ({ conversations, setCurrentconv, currentconv }) => {
+  const { currentUser } = useSelector((state) => state.user);
   const [q, setQ] = useState("");
   const socket = useRef();
-  const [onlineUsers,setOnlineUsers]=useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     socket.current = io("https://vellesocket.onrender.com/");
     socket.current.emit("addUser", currentUser._id);
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);
     });
-  },[]) 
-  
-  
+  }, []);
 
   return (
     <Container currentconv={currentconv}>
@@ -121,14 +117,16 @@ const LatestChat = ({conversations,setCurrentconv,currentconv}) => {
           />
         </div>
       </Search>
-      
 
       {conversations.map((conv) => {
         return (
-          <div onClick={()=>setCurrentconv(conv)}>
-            
-              <Conversation key={conv._id} conv={conv} q={q} onlineUsers={onlineUsers} />
-            
+          <div onClick={() => setCurrentconv(conv)}>
+            <Conversation
+              key={conv._id}
+              conv={conv}
+              q={q}
+              onlineUsers={onlineUsers}
+            />
           </div>
         );
       })}

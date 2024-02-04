@@ -11,8 +11,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../firebase";
-import Alert from "../components/Alert"
-
+import Alert from "../components/Alert";
 
 const Container = styled.div`
   flex: 3;
@@ -55,12 +54,9 @@ const Left = styled.div`
     width: 30px;
     cursor: pointer;
 
-
-    @media (max-width:900px){
+    @media (max-width: 900px) {
       display: flex;
     }
-
-
   }
 
   div {
@@ -126,7 +122,7 @@ const Main = styled.div`
   }
 `;
 
-const Perc=styled.span`
+const Perc = styled.span`
   position: absolute;
   top: -16px;
   font-weight: bold;
@@ -196,18 +192,17 @@ const Chat = ({ currentconv, setCurrentconv }) => {
   const [videoPerc, setVideoPerc] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
   const [vidUrl, setVidUrl] = useState(null);
-  const [open,setOpen]=useState(0);
-  const [onlineUsers,setOnlineUsers]=useState([]);
-  const[alert,setAlert]=useState("");
+  const [open, setOpen] = useState(0);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [alert, setAlert] = useState("");
 
-  const handleAlert=(err)=>{
+  const handleAlert = (err) => {
     setAlert(err.message);
     setOpen(1);
-    setTimeout(()=>{
-      setOpen(0)
-    },2000);
-    
-  }
+    setTimeout(() => {
+      setOpen(0);
+    }, 2000);
+  };
 
   const uploadFile = (file, urlType) => {
     const storage = getStorage(app);
@@ -239,10 +234,9 @@ const Chat = ({ currentconv, setCurrentconv }) => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          if(urlType === "imgUrl"){
+          if (urlType === "imgUrl") {
             setImgUrl(downloadURL);
-          }
-          else{
+          } else {
             setVidUrl(downloadURL);
           }
         });
@@ -261,19 +255,17 @@ const Chat = ({ currentconv, setCurrentconv }) => {
   useEffect(() => {
     socket.current = io("https://vellesocket.onrender.com/");
     socket.current?.on("getMessage", (data) => {
-      
       setArrivalMessage({
         senderId: data.senderId,
         desc: data.desc,
-        imgUrl:data.imgUrl,
-        videoUrl:data.videoUrl,
+        imgUrl: data.imgUrl,
+        videoUrl: data.videoUrl,
         createdAt: Date.now(),
       });
     });
   }, []);
 
   useEffect(() => {
-    
     socket.current.emit("addUser", currentUser._id);
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);
@@ -284,9 +276,15 @@ const Chat = ({ currentconv, setCurrentconv }) => {
     const f = currentconv?.members?.find((id) => id !== currentUser._id);
 
     try {
-      const res = await axios.get(`https://velle-wtov.onrender.com/api/message/get/${currentconv._id}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.get(
+        `https://velle-wtov.onrender.com/api/message/get/${currentconv._id}`,
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       if (f) {
-        const res1 = await axios.get(`https://velle-wtov.onrender.com/api/users/find/${f}`,{headers:{Authorization:"Bearer "+currentUser.jwt}});
+        const res1 = await axios.get(
+          `https://velle-wtov.onrender.com/api/users/find/${f}`,
+          { headers: { Authorization: "Bearer " + currentUser.jwt } }
+        );
         setFriend(res1.data);
       }
       setMessages(res.data);
@@ -306,26 +304,29 @@ const Chat = ({ currentconv, setCurrentconv }) => {
         senderId: currentUser._id,
         recieverId,
         desc: q,
-        imgUrl:imgUrl,
-        videoUrl:vidUrl,
+        imgUrl: imgUrl,
+        videoUrl: vidUrl,
       });
     }
 
     try {
-      const res = await axios.post(`https://velle-wtov.onrender.com/api/message/create/${currentconv._id}`, {
-        chatId: currentconv._id,
-        senderId: currentUser._id,
-        desc: q,
-        imgUrl:imgUrl,
-        videoUrl:vidUrl,
-      },{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.post(
+        `https://velle-wtov.onrender.com/api/message/create/${currentconv._id}`,
+        {
+          chatId: currentconv._id,
+          senderId: currentUser._id,
+          desc: q,
+          imgUrl: imgUrl,
+          videoUrl: vidUrl,
+        },
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       setImgPerc(0);
       setQ("");
       setVideoPerc(0);
       setImg(null);
       setVideo(null);
       setMessages([...messages, res.data]);
-      
     } catch (err) {
       console.log(err);
     }
@@ -347,7 +348,7 @@ const Chat = ({ currentconv, setCurrentconv }) => {
 
   return (
     <Container>
-      {open===1 ?<Alert/>:""}
+      {open === 1 ? <Alert /> : ""}
       <Top>
         <Left>
           <img
@@ -364,11 +365,10 @@ const Chat = ({ currentconv, setCurrentconv }) => {
           <div>
             <span>{friend.name}</span>
             <span style={{ fontSize: "15px" }}>
-              {onlineUsers.findIndex((u)=>u.userId===friend._id) === -1 ?
-              "Not Active":
-              "Active"
-              }
-              </span>
+              {onlineUsers.findIndex((u) => u.userId === friend._id) === -1
+                ? "Not Active"
+                : "Active"}
+            </span>
           </div>
         </Left>
         <Right>
@@ -378,7 +378,6 @@ const Chat = ({ currentconv, setCurrentconv }) => {
           <div>
             <img src="/images/Video2.svg" alt="" />
           </div>
-          
         </Right>
       </Top>
       <Main>
@@ -399,29 +398,25 @@ const Chat = ({ currentconv, setCurrentconv }) => {
               accept="image/*"
               id="image"
               onChange={(e) => setImg(e.target.files[0])}
-            />{
-              imgPerc>0 ?<Perc>Image:{imgPerc}%</Perc>:""
-            }
-              <img src="/images/Photo.svg" alt="" />
+            />
+            {imgPerc > 0 ? <Perc>Image:{imgPerc}%</Perc> : ""}
+            <img src="/images/Photo.svg" alt="" />
           </Icon>
-            </label>
-            <label htmlFor="video">
-
+        </label>
+        <label htmlFor="video">
           <Icon>
-          <input
-                type="file"
-                style={{ display: "none" }}
-                accept="video/*"
-                id="video"
-                onChange={(e) => setVideo(e.target.files[0])}
-                />
-            {
-              videoPerc>0 ? <Perc>Video:{videoPerc}%</Perc>:""
-            }
-              <img src="/images/Vid.svg" alt="" />
+            <input
+              type="file"
+              style={{ display: "none" }}
+              accept="video/*"
+              id="video"
+              onChange={(e) => setVideo(e.target.files[0])}
+            />
+            {videoPerc > 0 ? <Perc>Video:{videoPerc}%</Perc> : ""}
+            <img src="/images/Vid.svg" alt="" />
           </Icon>
-            </label>
-        <input type="text" onChange={(e) => setQ(e.target.value)} value={q}/>
+        </label>
+        <input type="text" onChange={(e) => setQ(e.target.value)} value={q} />
 
         <Icon style={{ backgroundColor: "blue" }} onClick={handleSend}>
           <img src="/images/Send.svg" alt="" />

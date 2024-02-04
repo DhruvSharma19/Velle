@@ -11,25 +11,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <Routes>
-        <Route path="/">
-          <Route index element={<Signup/>}/>
-          <Route path="home" element={<Home/>}/>
-          <Route path="messenger">
-            <Route path=":id" element={<Messenger/>}/>
+      <div className="App">
+        <Routes>
+          <Route path="/">
+            <Route index element={<Signup />} />
+            <Route path="home" element={<Home />} />
+            <Route path="messenger">
+              <Route path=":id" element={<Messenger />} />
+            </Route>
+            <Route path="friend">
+              <Route path=":id" element={<Friend />} />
+            </Route>
+            <Route path="search" element={<Search />} />
+            <Route path="profile">
+              <Route path=":id" element={<Profile />} />
+            </Route>
+            <Route path="signup" element={<Signup />} />
           </Route>
-          <Route path="friend">
-            <Route path=":id" element={<Friend/>}/>
-          </Route>
-          <Route path="search" element={<Search/>}/>
-          <Route path="profile">
-            <Route path=":id" element={<Profile/>}/>
-          </Route>
-          <Route path="signup" element={<Signup/>}/>
-        </Route>
-      </Routes>
-    </div>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

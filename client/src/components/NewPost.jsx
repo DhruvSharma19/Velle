@@ -143,7 +143,6 @@ const NewPost = () => {
 
   const dispatch = useDispatch();
 
-  
   const handleChange = (e) => {
     if (e.target.name === "desc") {
       setDesc(e.target.value);
@@ -192,7 +191,11 @@ const NewPost = () => {
 
   const handlePost = async () => {
     try {
-      const res = await axios.post("https://velle-wtov.onrender.com/api/post", { ...inputs },{headers:{Authorization:"Bearer "+currentUser.jwt}});
+      const res = await axios.post(
+        "https://velle-wtov.onrender.com/api/post",
+        { ...inputs },
+        { headers: { Authorization: "Bearer " + currentUser.jwt } }
+      );
       dispatch(addPost(res.data));
       setImgPerc(0);
       setVideoPerc(0);
