@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { createError } from "../error.js";
 import jwt from "jsonwebtoken"
 
-
+ 
 export const signin = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email })
