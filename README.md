@@ -1,6 +1,10 @@
 Velle is a web application 🌐 inspired by Facebook for users to stream and share thoughts through images, videos, and text. It allows users to upload their own posts and comment on any other post as well.
 
 Velle is a personal project by Dhruv Sharma.
+![diagram (1)](https://github.com/DhruvSharma19/Velle/assets/112254552/d8c0c12b-69f6-48d1-921c-b0707f228424)
+
+![diagram](https://github.com/DhruvSharma19/Velle/assets/112254552/58cd1196-27a1-4800-9e28-6677661ff02c)
+![Screenshot_3-6-2024_173130_diagrams helpful dev](https://github.com/DhruvSharma19/Velle/assets/112254552/3d4f5aab-c550-4bb8-a0f3-47e76951ad83)
 
 🔗 Website Link: [Velle Web App](https://main--elaborate-cajeta-d20f6b.netlify.app/)
 
