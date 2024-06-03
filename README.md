@@ -1,16 +1,23 @@
-Velle is a web application 🌐 inspired by Facebook for users to stream and share thoughts through images, videos, and text. It allows users to upload their own posts and comment on any other post as well.
+# Velle: A Web Application Inspired by Facebook 🌐
 
-Velle is a personal project by Dhruv Sharma.
-![diagram (1)](https://github.com/DhruvSharma19/Velle/assets/112254552/d8c0c12b-69f6-48d1-921c-b0707f228424)
+Velle is a web application 🌐 for users to stream and share thoughts through images, videos, and text. It allows users to upload their own posts and comment on any other post as well.
+
+🧑‍💻 **Test User:** testUser@gmail.com  
+🔐 **Password:** 12345678
+
+🌐 **Website Link:**  [Velle](https://main--elaborate-cajeta-d20f6b.netlify.app/)
+
+## 🎥 Demo Video
+
+https://clipchamp.com/watch/Bl9lQnhD2OY
+
+## 🛠️ System Diagrams
 
 ![diagram](https://github.com/DhruvSharma19/Velle/assets/112254552/58cd1196-27a1-4800-9e28-6677661ff02c)
+![diagram (1)](https://github.com/DhruvSharma19/Velle/assets/112254552/d8c0c12b-69f6-48d1-921c-b0707f228424)
 ![Screenshot_3-6-2024_173130_diagrams helpful dev](https://github.com/DhruvSharma19/Velle/assets/112254552/3d4f5aab-c550-4bb8-a0f3-47e76951ad83)
 
-🔗 Website Link: [Velle Web App](https://main--elaborate-cajeta-d20f6b.netlify.app/)
-
-🎥 Working Video: [Velle Demo](https://clipchamp.com/watch/Bl9lQnhD2OY)
-
-**Major Features:**
+## 🌟 Key Features
 
 1. **Signup and Signin Page:**
    - Authentication of users ✔️
@@ -104,15 +111,93 @@ Velle is a personal project by Dhruv Sharma.
 
 ![Image and Video in Chat](https://user-images.githubusercontent.com/112254552/234384084-19b29f76-aed1-4172-9f6e-d5b352e70788.png)
 
-**Technology Used:**
-Velle is a single-page application built using:
+## 🛠 Technologies Used
 
-1. React JS
-2. MongoDB
-3. Express JS
-4. Node JS
-5. CSS
-6. Styled components
-7. Redux
-8. React-Router
-9. Axios
+### 🌐 Front-End Technologies
+1. **React JS**: Efficient UI builder. ⚛️
+2. **CSS**: Styles web pages. 🎨
+3. **Styled Components**: Styles React components. 🧩
+4. **Redux**: Manages app state. 📦
+5. **React-Router**: Enables navigation. 🧭
+
+### 📡 Back-End Technologies
+1. **Node JS**: Server-side JavaScript. ⚙️
+2. **Express JS**: Server-side framework. 🌐
+3. **MongoDB**: NoSQL database. 📚
+
+### 🔗 API and Data Fetching
+1. **Axios**: HTTP requests. 🌐
+
+## 🚀 Getting Started
+
+To get started with Velle, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/DhruvSharma19/Velle.git
+   cd Velle
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory and add the necessary environment variables.
+
+4. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
+   The application should now be running on `http://localhost:3000`.
+
+5. **Build for Production**:
+   ```bash
+   npm run build
+   npm start
+   ```
+
+## 🤝 Contributions
+
+We welcome contributions to Velle! To contribute:
+
+1. **Fork the Repository**:
+   Click the "Fork" button at the top right corner of the repository page.
+
+2. **Clone Your Fork**:
+   ```bash
+   git clone https://github.com/your-username/Velle.git
+   cd Velle
+   ```
+
+3. **Create a New Branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make Your Changes**:
+   Implement your feature or fix the bug.
+
+5. **Commit Your Changes**:
+   ```bash
+   git add .
+   git commit -m "Add your commit message here"
+   ```
+
+6. **Push to Your Fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+7. **Create a Pull Request**:
+   Open a pull request from your forked repository's branch to the main branch of the original repository.
+
+We appreciate your contributions and will review your pull request as soon as possible!
+
+## 🙏 Acknowledgements
+
+A big thank you to everyone who contributed to this project! We appreciate your support and feedback.
+
+If you have any questions or need assistance, feel
+ free to open an issue or reach out to the project maintainers. Enjoy using Velle and happy coding! ✨
